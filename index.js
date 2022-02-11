@@ -9,10 +9,7 @@ const date = new Date();
       method: 'GET',
       url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
       params: {nconst: 'nm1760272/'},
-      headers: {
-        'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-        'x-rapidapi-key': '649d2fdc5cmsh99c14c1d8264b45p1b5fd1jsnc9570bb02b41'
-      }
+
     };
 
     axios.request(options).then(function (response) {
@@ -26,10 +23,7 @@ app.get('/', (req, res) => {
 
   const options = {
     method: 'GET',
-    headers: {
-      'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-      'x-rapidapi-key': '649d2fdc5cmsh99c14c1d8264b45p1b5fd1jsnc9570bb02b41'
-    }
+  
   }
     //url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
     //params: {nconst: 'nm1760272/'},
@@ -49,7 +43,7 @@ app.get('/', (req, res) => {
       //getBio.params.nconst = text;
       //res.send(getBio.params.nconst);
 
-      res.send(text);
+      res.send(celeb[1]);
   }).catch(function (error) {
     console.error(error);
   });
