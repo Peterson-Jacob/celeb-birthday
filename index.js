@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 const app = express()
-const port = 3000
+ const port = 8000
 const date = new Date();
 
 /*
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
   const options = {
     method: 'GET',
+   
   
   }
     //url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
@@ -43,7 +44,7 @@ app.get('/', (req, res) => {
       //getBio.params.nconst = text;
       //res.send(getBio.params.nconst);
 
-      res.send(celeb[1]);
+      res.send(text);
   }).catch(function (error) {
     console.error(error);
   });
