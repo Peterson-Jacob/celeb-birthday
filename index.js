@@ -4,20 +4,6 @@ const app = express()
  const port = 8000
 const date = new Date();
 
-/*
-      const options = {
-      method: 'GET',
-      url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
-      params: {nconst: 'nm1760272/'},
-
-    };
-
-    axios.request(options).then(function (response) {
-      const data = response.data;
-      res.send(data.name);
-    }).catch(function (error) {
-      console.error(error);
-    });*/
 
 app.get('/', (req, res) => {
 
@@ -26,28 +12,36 @@ app.get('/', (req, res) => {
    
   
   }
-    //url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
-    //params: {nconst: 'nm1760272/'},
-
+   
   options.url = 'https://imdb8.p.rapidapi.com/actors/list-born-today';
   options.params = {month: date.getMonth() + 1, day: date.getDate()};
 
   axios.request(options).then(function (response) {
       const celeb = response.data;
+      const celebArray = [];
       let i = 0;
-      let text = "";
       while(celeb[i]){
-        text += celeb[i].substr(6) + "<br/>";
-        i++;
+        celebArray.push(celeb[i].substr(6));
+        i++;  
       }
+      options.url = 'https://imdb8.p.rapidapi.com/actors/get-bio';
+      options.params = {nconst: celebArray[4]};
+      
+      
+  axios.request(options).then(function (response) {
+        const celebBio = response.data;
 
-      //getBio.params.nconst = text;
-      //res.send(getBio.params.nconst);
-
-      res.send(text);
+        res.send(celebBio);    
+      
+      }).catch(function (error) {
+        console.error(error);
+      });
+    
+     // res.send(data.name);
   }).catch(function (error) {
     console.error(error);
   });
+
 
 
 
