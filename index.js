@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 
   const options = {
     method: 'GET',
-   
+ 
   
   }
    
@@ -25,13 +25,13 @@ app.get('/', (req, res) => {
         i++;  
       }
       options.url = 'https://imdb8.p.rapidapi.com/actors/get-bio';
-      options.params = {nconst: celebArray[4]};
+      options.params = {nconst: celebArray[0]};
       
       
   axios.request(options).then(function (response) {
         const celebBio = response.data;
 
-        res.send(celebBio);    
+        res.send("<img src='" + celebBio.image.url + "'>");    
       
       }).catch(function (error) {
         console.error(error);
